@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain Sensor Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+        }
+        .status {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .nav {
+            margin-top: 10px;
+        }
+        .nav a {
+            color: #4CAF50;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .nav a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sensor Values</h1>
+        <div id="status" class="status">Sensor every 30 secs, wait...</div>
+        <div class="nav">
+            <a href="/sensor-setup.html">Setup Sensor</a>
+        </div>
+    </div>
+    <script>
+        async function fetchSensorStatus() {
+            try {
+                const response = await fetch('/posts/list');
+                const data = await response.json();
+                if(data.data[0] != null){
+                    document.getElementById('status').textContent = data.data[0].result;
+                }
+                
+            } catch (error) {
+                document.getElementById('status').textContent = 'Error fetching sensor status';
+                console.error('Error:', error);
+            }
+        }
+
+        // Fetch sensor status when the page loads
+        fetchSensorStatus();
+
+        // Fetch sensor status every 30 seconds
+        setInterval(fetchSensorStatus, 30000);
+    </script>
+</body>
+</html>

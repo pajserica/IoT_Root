@@ -1,0 +1,95 @@
+<!-- public/sensor-setup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Setup</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f4; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        }
+        .container { 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            width: 300px; 
+        }
+        .container h1 { 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+        .form-group { 
+            margin-bottom: 15px; 
+        }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 5px; 
+        }
+        .form-group input { 
+            width: 100%; 
+            padding: 8px; 
+            box-sizing: border-box; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+        }
+        .form-group button { 
+            width: 100%; 
+            padding: 10px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px; 
+        }
+        .form-group button:hover { 
+            background-color: #45a049; 
+        }
+        .nav { 
+            text-align: center; 
+            margin-top: 10px; 
+        }
+        .nav a { 
+            color: #4CAF50; 
+            text-decoration: none; 
+        }
+        .nav a:hover { 
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sensor Setup</h1>
+        <form id="sensorSetupForm" method="POST" action="/setup-sensor">
+            <div class="form-group">
+                <label for="sensorName">Sensor Name:</label>
+                <input type="text" id="sensorName" name="sensorName" required>
+            </div>
+            <div class="form-group">
+                <label for="sensorSSID">Wi-Fi Name:</label>
+                <input type="text" id="sensorSSID" name="sensorSSID" required>
+            </div>
+            <div class="form-group">
+                <label for="sensorPassword">Wi-Fi Password:</label>
+                <input type="password" id="sensorPassword" name="sensorPassword" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Save Sensor</button>
+            </div>
+        </form>
+        <div class="nav">
+            <a href="/sensor-values.html">View Sensor Values</a>
+        </div>
+    </div>
+</body>
+</html>
